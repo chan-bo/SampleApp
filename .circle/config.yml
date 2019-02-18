@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/SampleApp
+    docker:
+      - image: circleci/android:api-28
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run:
+          name: Build
+          command: ./gradlew build
