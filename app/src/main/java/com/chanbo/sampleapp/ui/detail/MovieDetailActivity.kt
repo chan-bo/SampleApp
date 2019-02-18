@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.chanbo.sampleapp.BR
 import com.chanbo.sampleapp.R
 import com.chanbo.sampleapp.data.detail.MovieDetailResponse
@@ -55,7 +56,7 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding, MovieDetail
         castRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         castRecyclerView.adapter = _castAdapter
 
-        photoRecyclerView.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL , false)
+        photoRecyclerView.layoutManager = GridLayoutManager(this, 2, RecyclerView.VERTICAL , false)
         photoRecyclerView.adapter = _photoAdapter
     }
 }
