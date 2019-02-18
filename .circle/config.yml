@@ -1,4 +1,7 @@
 version: 2
+general:
+  branches:
+    only: circle-ci
 jobs:
   build:
     working_directory: ~/SampleApp
