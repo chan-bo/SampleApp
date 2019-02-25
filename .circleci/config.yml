@@ -132,9 +132,9 @@ jobs:
       - *decode_android_key
       - *create_google_play_key
 
-      - run:
-          name: Create keystore.jks
-          command: echo $RELEASE_KEYSTORE_BASE64 | base64 -d > ../keystore.jks
+#      - run:
+#          name: Create keystore.jks
+#          command: echo $RELEASE_KEYSTORE_BASE64 | base64 -d > ../keystore.jks
 
       - run:
           name: Deploy to Play Store
