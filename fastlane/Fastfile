@@ -18,7 +18,7 @@ default_platform(:android)
 platform :android do
 
   before_all do |lane, options|
-    @build_type = "debug"
+    @build_type = "release"
     if not options.empty?
         @build_type = options["release"] ? "Release" : "Debug"
     end
@@ -64,7 +64,7 @@ platform :android do
 
   desc "Send Message to Slack"
   lane :send_to_slack do
-    sh "/fastlane/send_to_slack.sh"
+    sh "../fastlane/send_to_slack.sh"
     #sh "curl -X POST --data '{\"text\":\"Hello, World!\"}' https://hooks.slack.com/services/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"
     #sh "curl -F token=xoxp-474526796610-473921783169-555578726836-5aa8b4ad476a130b89634de997c2fdf9 -F channels=CDYAFET1A -F file=@../app/build/outputs/apk/debug/app-debug.apk https://slack.com/api/files.upload"
   end

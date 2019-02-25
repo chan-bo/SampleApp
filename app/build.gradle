@@ -23,10 +23,14 @@ android {
 
     signingConfigs {
         release {
-            keyAlias keyStoreProperties['releaseKeyAlias']
-            keyPassword keyStoreProperties['releaseKeyPassword']
-            storeFile file(keyStoreProperties['releaseKeyStore'])
-            storePassword keyStoreProperties['releaseStorePassword']
+            storeFile file("keystore.jks")
+            storePassword '123456'
+            keyAlias 'SampleAppCICD'
+            keyPassword '123456'
+//            keyAlias keyStoreProperties['releaseKeyAlias']
+//            keyPassword keyStoreProperties['releaseKeyPassword']
+//            storeFile file(keyStoreProperties['releaseKeyStore'])
+//            storePassword keyStoreProperties['releaseStorePassword']
         }
     }
 
