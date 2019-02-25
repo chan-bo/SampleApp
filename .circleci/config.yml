@@ -119,6 +119,34 @@ jobs:
           path: firebase/
           destination: /firebase/
 
+  deploy_play_store:
+    <<: *android_config
+    steps:
+      - checkout
+      - *restore_gradle_cache
+      - *restore_gems_cache
+      - *ruby_dependencies
+      - *android_dependencies
+      - *save_gradle_cache
+      - *save_gems_cache
+      - *decode_android_key
+      - *create_google_play_key
+
+      - run:
+          name: Create keystore.jks
+          command: echo $RELEASE_KEYSTORE_BASE64 | base64 -d > ../keystore.jks
+
+      - run:
+          name: Deploy to Play Store
+          command: bundle exec fastlane deploy_to_play_store
+
+      - store_artifacts:
+          path: app/build/outputs/apk/
+          destination: /apk/
+
+      - store_artifacts:
+          path: app/build/outputs/mapping/
+          destination: /mapping/
 
 workflows:
   version: 2
@@ -128,3 +156,8 @@ workflows:
       - test_instrumentation:
           requires:
             - test_unit
+
+      - deploy_play_store:
+          requires:
+            - test_unit
+            - test_instrumentation
