@@ -119,13 +119,12 @@ jobs:
           path: firebase/
           destination: /firebase
 
+
 workflows:
   version: 2
   workflow:
     jobs:
-      - run:
-          name: Run Unit Tests
-          command: bundle exec fastlane unit_tests
+      - test_unit
 #      - test_instrumentation:
 #          requires:
 #            - test_unit
