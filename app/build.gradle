@@ -23,7 +23,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("keystore.jks")
+            storeFile file("sample-app-cicd.keystore")
             storePassword '123456'
             keyAlias 'SampleAppCICD'
             keyPassword '123456'
