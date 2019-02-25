@@ -81,7 +81,7 @@ jobs:
 
       - store_artifacts:
           path: app/build/reports
-          destination: /reports
+          destination: /reports/
 
       - store_test_results:
           path: app/build/test-results
@@ -99,9 +99,9 @@ jobs:
       - *save_gradle_cache
       - *save_gems_cache
 
-      - run:
-          name: Authorize to gcloud
-          command: gcloud auth activate-service-account --key-file=gcloud-service-key.json --project=testfastlane-e6694
+#      - run:
+#          name: Authorize to gcloud
+#          command: gcloud auth activate-service-account --key-file=gcloud-service-key.json --project=testfastlane-e6694
 
       - store_artifacts:
           path: app/build/outputs/apk
@@ -117,7 +117,7 @@ jobs:
 
       - store_artifacts:
           path: firebase/
-          destination: /firebase
+          destination: /firebase/
 
 
 workflows:
