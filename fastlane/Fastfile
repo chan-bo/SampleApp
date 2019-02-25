@@ -18,7 +18,7 @@ default_platform(:android)
 platform :android do
 
   before_all do |lane, options|
-    @build_type = "release"
+    @build_type = "debug"
     if not options.empty?
         @build_type = options["release"] ? "Release" : "Debug"
     end
