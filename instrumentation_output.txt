@@ -1,0 +1,47 @@
+
+Have questions, feedback, or issues? Get support by visiting:
+  https://firebase.google.com/support/
+
+Uploading [app/build/outputs/apk/debug/app-debug.apk] to Firebase Test Lab...
+Uploading [app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk] to Firebase Test Lab...
+Raw results will be stored in your GCS bucket at [https://console.developers.google.com/storage/browser/test-lab-n7i01a1kst35c-hy03wjqkpzm9s/2019-02-25_10:44:15.315419_CJbG/]
+
+Test [matrix-6rqc0ske1xbpa] has been created in the Google Cloud.
+Firebase Test Lab will execute your instrumentation test on 1 device(s).
+Creating individual test executions...
+.........................................done.
+
+Test results will be streamed to [https://console.firebase.google.com/project/sampleappcicd/testlab/histories/bh.da1646e47b3e45b4/matrices/6694820741593228607].
+10:44:31 Test is Pending
+10:44:58 Starting attempt 1.
+10:44:58 Test is Running
+10:46:03 Started logcat recording.
+10:46:03 Preparing device.
+10:46:43 Logging in to Google account on device.
+10:46:43 Installing apps.
+10:46:56 Retrieving Pre-Test Package Stats information from the device.
+10:46:56 Retrieving Performance Environment information from the device.
+10:46:56 Started crash detection.
+10:46:56 Started crash monitoring.
+10:46:56 Started performance monitoring.
+10:46:56 Started video recording.
+10:47:08 Starting instrumentation test.
+10:47:08 Completed instrumentation test.
+10:47:20 Stopped performance monitoring.
+10:47:45 Stopped crash monitoring.
+10:47:45 Stopped logcat recording.
+10:47:45 Retrieving Post-test Package Stats information from the device.
+10:47:45 Logging out of Google account on device.
+10:47:45 Done. Test time = 4 (secs)
+10:47:45 Starting results processing. Attempt: 1
+10:47:45 Completed results processing. Time taken = 4 (secs)
+10:47:45 Test is Finished
+
+Instrumentation testing complete.
+
+More details are available at [https://console.firebase.google.com/project/sampleappcicd/testlab/histories/bh.da1646e47b3e45b4/matrices/6694820741593228607].
++---------+---------------------------+---------------------+
+| OUTCOME |      TEST_AXIS_VALUE      |     TEST_DETAILS    |
++---------+---------------------------+---------------------+
+| Passed  | Nexus6P-27-en_US-portrait | 1 test cases passed |
++---------+---------------------------+---------------------+

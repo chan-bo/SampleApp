@@ -1,0 +1,65 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+
+  before_all do |lane, options|
+    @build_type = "debug"
+    if not options.empty?
+        @build_type = options["release"] ? "Release" : "Debug"
+    end
+  end
+
+  desc "Assemble Build"
+  lane :assemble_build do |options|
+    gradle(task: "assemble", build_type: @build_type)
+  end
+
+  desc "Assemble Test Application"
+  lane :assemble_test_application do |options|
+    gradle(task: "assemble", build_type: "AndroidTest")
+  end
+
+  desc "Run Unit Tests"
+  lane :unit_tests do |options|
+    gradle(task: "test", build_type: @build_type)
+  end
+
+  desc "Run UI Test in Firebase Test Lab"
+  lane :instrumentation_tests_testlab do
+    assemble_test_application
+    assemble_build
+    run_tests_firebase_testlab(
+        project_id: "sampleappcicd",
+        devices: [
+            {
+                model: "Nexus6P",
+                version: "27"
+            }
+        ],
+        delete_firebase_files: true
+    )
+    end
+
+  desc "Send Message to Slack"
+  lane :send_to_slack do
+    sh "/fastlane/send_to_slack.sh"
+    #sh "curl -X POST --data '{\"text\":\"Hello, World!\"}' https://hooks.slack.com/services/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"
+    #sh "curl -F token=xoxp-474526796610-473921783169-555578726836-5aa8b4ad476a130b89634de997c2fdf9 -F channels=CDYAFET1A -F file=@../app/build/outputs/apk/debug/app-debug.apk https://slack.com/api/files.upload"
+  end
+
+end
