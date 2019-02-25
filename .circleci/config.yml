@@ -61,7 +61,7 @@ references:
       name: Create Google Play Key
       command: echo $GOOGLE_PLAY_KEY > google-play-key.json
 
-job:
+jobs:
 
   #Run Unit Test
   test_unit:
