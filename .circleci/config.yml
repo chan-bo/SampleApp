@@ -123,7 +123,9 @@ workflows:
   version: 2
   workflow:
     jobs:
-      - test_unit
+      - run:
+          name: Run Unit Tests
+          command: bundle exec fastlane unit_tests
 #      - test_instrumentation:
 #          requires:
 #            - test_unit
