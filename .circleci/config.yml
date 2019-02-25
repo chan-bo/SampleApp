@@ -125,6 +125,6 @@ workflows:
   workflow:
     jobs:
       - test_unit
-#      - test_instrumentation:
-#          requires:
-#            - test_unit
+      - test_instrumentation:
+          requires:
+            - test_unit
