@@ -119,6 +119,7 @@ jobs:
           path: firebase/
           destination: /firebase/
 
+  # Deploy to google play store
   deploy_play_store:
     <<: *android_config
     steps:
@@ -132,13 +133,6 @@ jobs:
       - *decode_android_key
       - *create_google_play_key
 
-      - run:
-          name: Create keystore.jks
-          command: echo $RELEASE_KEYSTORE_BASE64 | base64 -d > ../keystore.jks
-
-      - run:
-          name: List Environment Variable
-          command: echo $ENVAR
 
       - run:
           name: Deploy to Play Store
@@ -161,7 +155,7 @@ workflows:
           requires:
             - test_unit
 
-#      - deploy_play_store:
-#          requires:
-#            - test_unit
-#            - test_instrumentation
+      - deploy_play_store:
+          requires:
+            - test_unit
+            - test_instrumentation

@@ -3,6 +3,7 @@ package com.chanbo.sampleapp.ui.toprated
 import androidx.paging.PageKeyedDataSource
 import com.chanbo.sampleapp.api.Repository
 import com.chanbo.sampleapp.data.ResultsItem
+import com.chanbo.sampleapp.utils.EspressoIdlingResource
 import com.chanbo.sampleapp.utils.Subscriber
 import timber.log.Timber
 

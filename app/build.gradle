@@ -74,7 +74,10 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.2-alpha01'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.2-alpha01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.1'
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.1.1'
+    androidTestImplementation 'androidx.test:core:1.1.0'
 
     // Retrofit + OkHttp
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -110,4 +113,5 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
+    androidTestImplementation 'tools.fastlane:screengrab:1.2.0'
 }

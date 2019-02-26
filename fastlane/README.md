@@ -46,6 +46,11 @@ Deploy new version to store
 fastlane android send_to_slack
 ```
 Send Message to Slack
+### android capture_screen
+```
+fastlane android capture_screen
+```
+Capture Screen
 
 ----
 

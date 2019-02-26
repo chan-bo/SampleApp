@@ -55,8 +55,10 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding, MovieDetail
 
         castRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         castRecyclerView.adapter = _castAdapter
+        castRecyclerView.isNestedScrollingEnabled = false
 
         photoRecyclerView.layoutManager = GridLayoutManager(this, 2, RecyclerView.VERTICAL , false)
         photoRecyclerView.adapter = _photoAdapter
+        photoRecyclerView.isNestedScrollingEnabled = false
     }
 }
