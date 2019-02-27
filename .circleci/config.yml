@@ -133,7 +133,7 @@ jobs:
 #      - *decode_android_key
 #      - *create_google_play_key
 
-      - run: echo "Build process is started 👯"
+#      - run: echo "Build process is started 👯"
 #      - run:
 #          name: Create debug.keystore.jks
 #          command: echo $DEBUG_KEYSTORE_BASE64 | base64 -d > $debugKeyStore
