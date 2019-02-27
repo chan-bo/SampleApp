@@ -59,7 +59,7 @@ platform :android do
   lane :deploy_to_play_store do
     @build_type = "Release"
     assemble_build
-    upload_to_play_store
+    #upload_to_play_store
   end
 
   desc "Send Message to Slack"
