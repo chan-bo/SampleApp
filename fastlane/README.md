@@ -46,6 +46,21 @@ Deploy new version to store
 fastlane android send_to_slack
 ```
 Send Message to Slack
+### android send_apk_to_slack
+```
+fastlane android send_apk_to_slack
+```
+Send Apk to Slack
+### android beta
+```
+fastlane android beta
+```
+Beta Deployment
+### android release
+```
+fastlane android release
+```
+Release Deployment
 ### android capture_screen
 ```
 fastlane android capture_screen

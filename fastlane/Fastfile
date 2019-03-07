@@ -26,7 +26,7 @@ platform :android do
 
   desc "Assemble Build"
   lane :assemble_build do |options|
-    gradle(task: "assemble", build_type: @build_type)
+    gradle(task: "assemble", flavor: options[:build_flavor], build_type: options[:build_type])
   end
 
   desc "Assemble Test Application"
@@ -36,15 +36,24 @@ platform :android do
 
   desc "Run Unit Tests"
   lane :unit_tests do |options|
-    gradle(task: "test", build_type: @build_type)
+    gradle(task: "test", flavor: options[:build_flavor], build_type: options[:build_type])
   end
 
   desc "Run UI Test in Firebase Test Lab"
-  lane :instrumentation_tests_testlab do
-    assemble_test_application
-    assemble_build
+  lane :instrumentation_tests_testlab do |options|
+    #assemble_test_application
+    assemble_build(build_flavor:options[:build_flavor], build_type:"Debug")
+    @app_apk = Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
+
+    assemble_build(build_flavor:options[:build_flavor] + "Debug", build_type:"AndroidTest")
+    @android_test_apk = Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
+
     run_tests_firebase_testlab(
         project_id: "sampleappcicd",
+        #app_apk: "app/build/outputs/apk/beta/debug/app-beta-debug.apk",
+        #android_test_apk: "app/build/outputs/apk/androidTest/beta/debug/app-beta-debug-androidTest.apk",
+        app_apk: @app_apk,
+        android_test_apk: @android_test_apk,
         devices: [
             {
                 model: "Nexus6P",
@@ -69,6 +78,38 @@ platform :android do
     #sh "curl -F token=xoxp-474526796610-473921783169-555578726836-5aa8b4ad476a130b89634de997c2fdf9 -F channels=CDYAFET1A -F file=@../app/build/outputs/apk/debug/app-debug.apk https://slack.com/api/files.upload"
   end
 
+  desc "Send Apk to Slack"
+  lane :send_apk_to_slack do |options|
+    file_path = options[:apk_path]
+    file_name = "File Name"
+    sh "curl https://slack.com/api/files.upload -F token=\"xoxp-474526796610-473921783169-569292002371-90110c5e994a82f40efdae07038996a1\" \
+        -F channels=\"CDYAFET1A\" -F title=\"" + file_name + "\" -F file=@" + file_path
+  end
+
+  desc "Beta Deployment"
+  lane :beta do |options|
+    #upload_to_play_store(
+    #    track: 'beta',
+    #    apk: options[:apk_path]
+    #)
+    crashlytics(
+        apk_path:options[:apk_path],
+        api_token:'aee4492cf369d809aef43858bff0ebe71598851b',
+        build_secret:'f0ae8fb4562bc616993490b07f6020fd893759e771616704aca9bc8f035f333c'
+    )
+  end
+
+  desc "Release Deployment"
+  lane :release do |options|
+    upload_to_play_store(
+        apk: options[:apk_path]
+    )
+    crashlytics(
+        apk_path:options[:apk_path],
+        api_token:'aee4492cf369d809aef43858bff0ebe71598851b',
+        build_secret:'f0ae8fb4562bc616993490b07f6020fd893759e771616704aca9bc8f035f333c'
+    )
+  end
 
   desc "Capture Screen"
   lane :capture_screen do
