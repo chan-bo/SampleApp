@@ -109,7 +109,7 @@ jobs:
 
       - run:
           name: Run instrumentation tests in Firebase Testlab
-          command: bundle exec fastlane instrumentation_tests_testlab
+          command: bundle exec fastlane instrumentation_tests_testlab build_flavor:$BUILD_FLAVOR
 
       - run:
           name: Send apk to slack
@@ -151,9 +151,9 @@ workflows:
   workflow:
     jobs:
       - test_unit
-#      - test_instrumentation:
-#          requires:
-#            - test_unit
+      - test_instrumentation:
+          requires:
+            - test_unit
 #
 #      - deploy_play_store:
 #          requires:
