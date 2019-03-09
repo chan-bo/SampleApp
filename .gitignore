@@ -13,3 +13,4 @@
 .externalNativeBuild
 .idea
 app/keystore
+keystore.properties
