@@ -183,7 +183,7 @@ workflows:
           requires:
             - test_unit
 
-      - beta:
+      - beta_deployment:
           requires:
             - test_unit
             - test_instrumentation
