@@ -102,11 +102,12 @@ platform :android do
 
   desc "Release Deployment"
   lane :release do |options|
+    assemble_build(build_flavor:"Pro", build_type:"Release")
     upload_to_play_store(
-        apk: options[:apk_path]
+        apk: Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
     )
     crashlytics(
-        apk_path:options[:apk_path],
+        apk_path:Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH],
         api_token:'aee4492cf369d809aef43858bff0ebe71598851b',
         build_secret:'f0ae8fb4562bc616993490b07f6020fd893759e771616704aca9bc8f035f333c'
     )
