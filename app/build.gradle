@@ -38,7 +38,7 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -120,6 +120,6 @@ dependencies {
     androidTestImplementation 'tools.fastlane:screengrab:1.2.0'
 
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.9@aar') {
-        transitive = true;
+        transitive = true
     }
 }
