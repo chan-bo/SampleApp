@@ -12,5 +12,4 @@
 /captures
 .externalNativeBuild
 .idea
-keystore.properties
 app/keystore
