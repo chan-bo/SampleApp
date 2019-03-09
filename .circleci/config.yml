@@ -54,7 +54,7 @@ references:
   decode_android_key: &decode_android_key
     run:
       name: Decode Android key store
-      command: echo $KEYSTORE | base64 -di | tee keystore.jks app/keystore.jks > /dev/null
+      command: echo $KEYSTORE | base64 -di | tee keystore app/keystore > /dev/null
 
   create_keystore_properties: &create_keystore_properties
     run:
@@ -154,9 +154,9 @@ workflows:
   workflow:
     jobs:
       - test_unit
-      - test_instrumentation:
-          requires:
-            - test_unit
+#      - test_instrumentation:
+#          requires:
+#            - test_unit
 #
 #      - deploy_play_store:
 #          requires:
