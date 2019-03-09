@@ -77,11 +77,15 @@ jobs:
       - *restore_gradle_cache
       - *restore_gems_cache
       - *ruby_dependencies
-#       - *create_keystore_properties
+      - *create_keystore_properties
       - *decode_android_key
       - *android_dependencies
       - *save_gradle_cache
       - *save_gems_cache
+
+      - run:
+          name: View keystore file
+          command: cat ~/src/app/keystore
 
       - run:
           name: Run Unit Tests
