@@ -64,23 +64,10 @@ platform :android do
     )
     end
 
-  desc "Deploy new version to store"
-  lane :deploy_to_play_store do
-    @build_type = "Release"
-    assemble_build
-    #upload_to_play_store
-  end
-
-  desc "Send Message to Slack"
-  lane :send_to_slack do
-    sh "../fastlane/send_to_slack.sh"
-    #sh "curl -X POST --data '{\"text\":\"Hello, World!\"}' https://hooks.slack.com/services/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"
-    #sh "curl -F token=xoxp-474526796610-473921783169-555578726836-5aa8b4ad476a130b89634de997c2fdf9 -F channels=CDYAFET1A -F file=@../app/build/outputs/apk/debug/app-debug.apk https://slack.com/api/files.upload"
-  end
-
   desc "Send Apk to Slack"
   lane :send_apk_to_slack do |options|
-    file_path = options[:apk_path]
+    assemble_build(build_flavor:options[:build_flavor], build_type:options[:build_type])
+    file_path = Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
     file_name = "File Name"
     sh "curl https://slack.com/api/files.upload -F token=\"xoxp-474526796610-473921783169-569292002371-90110c5e994a82f40efdae07038996a1\" \
         -F channels=\"CDYAFET1A\" -F title=\"" + file_name + "\" -F file=@" + file_path

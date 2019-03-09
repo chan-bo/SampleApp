@@ -36,16 +36,6 @@ Run Unit Tests
 fastlane android instrumentation_tests_testlab
 ```
 Run UI Test in Firebase Test Lab
-### android deploy_to_play_store
-```
-fastlane android deploy_to_play_store
-```
-Deploy new version to store
-### android send_to_slack
-```
-fastlane android send_to_slack
-```
-Send Message to Slack
 ### android send_apk_to_slack
 ```
 fastlane android send_apk_to_slack
