@@ -17,21 +17,9 @@ default_platform(:android)
 
 platform :android do
 
-  before_all do |lane, options|
-    @build_type = "debug"
-    if not options.empty?
-        @build_type = options["release"] ? "Release" : "Debug"
-    end
-  end
-
   desc "Assemble Build"
   lane :assemble_build do |options|
     gradle(task: "assemble", flavor: options[:build_flavor], build_type: options[:build_type])
-  end
-
-  desc "Assemble Test Application"
-  lane :assemble_test_application do |options|
-    gradle(task: "assemble", build_type: "AndroidTest")
   end
 
   desc "Run Unit Tests"
@@ -41,7 +29,6 @@ platform :android do
 
   desc "Run UI Test in Firebase Test Lab"
   lane :instrumentation_tests_testlab do |options|
-    #assemble_test_application
     assemble_build(build_flavor:options[:build_flavor], build_type:"Debug")
     @app_apk = Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
 
@@ -50,8 +37,6 @@ platform :android do
 
     run_tests_firebase_testlab(
         project_id: "sampleappcicd",
-        #app_apk: "app/build/outputs/apk/beta/debug/app-beta-debug.apk",
-        #android_test_apk: "app/build/outputs/apk/androidTest/beta/debug/app-beta-debug-androidTest.apk",
         app_apk: @app_apk,
         android_test_apk: @android_test_apk,
         devices: [
@@ -68,7 +53,7 @@ platform :android do
   lane :send_apk_to_slack do |options|
     assemble_build(build_flavor:options[:build_flavor], build_type:options[:build_type])
     file_path = Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
-    file_name = "File Name"
+    file_name = options[:build_flavor] + " " + options[:build_type]
     sh "curl https://slack.com/api/files.upload -F token=\"xoxp-474526796610-473921783169-569292002371-90110c5e994a82f40efdae07038996a1\" \
         -F channels=\"CDYAFET1A\" -F title=\"" + file_name + "\" -F file=@" + file_path
   end
@@ -100,11 +85,5 @@ platform :android do
     )
   end
 
-  desc "Capture Screen"
-  lane :capture_screen do
-    assemble_build
-    assemble_test_application
-    screengrab
-  end
 
 end

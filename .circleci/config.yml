@@ -178,15 +178,25 @@ workflows:
   workflow:
     jobs:
       - test_unit
+      
       - test_instrumentation:
           requires:
             - test_unit
 
       - beta_deployment:
+          filters:
+            branches:
+              only:
+                - beta
           requires:
             - test_unit
             - test_instrumentation
-#      - deploy_play_store:
-#          requires:
-#            - test_unit
-#            - test_instrumentation
+
+      - deploy_play_store:
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - test_unit
+            - test_instrumentation
