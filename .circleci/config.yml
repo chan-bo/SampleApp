@@ -192,7 +192,7 @@ workflows:
             - test_unit
             - test_instrumentation
 
-      - deploy_play_store:
+      - release_deployment:
           filters:
             branches:
               only:
