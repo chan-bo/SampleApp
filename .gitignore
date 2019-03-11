@@ -12,3 +12,6 @@
 /captures
 .externalNativeBuild
 .idea
+app/keystore
+keystore.properties
+google-play-key.json

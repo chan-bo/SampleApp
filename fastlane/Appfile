@@ -1,2 +1,2 @@
-json_key_file("api-6253618223397229360-389303-3d0ff6564b7e.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+json_key_file("google-play-key.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
 package_name("com.chanbo.sampleapp") # e.g. com.krausefx.app
