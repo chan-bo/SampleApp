@@ -167,7 +167,7 @@ jobs:
 
       - run:
           name: Deploy to Play Store
-          command: bundle exec fastlane deploy_to_play_store
+          command: bundle exec fastlane release
 
       - store_artifacts:
           path: app/build/outputs/mapping/
