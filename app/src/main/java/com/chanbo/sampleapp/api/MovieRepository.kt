@@ -1,21 +1,23 @@
 package com.chanbo.sampleapp.api
 
+import com.chanbo.sampleapp.api.callback.Result
 import com.chanbo.sampleapp.data.MovieResponse
 import com.chanbo.sampleapp.data.detail.MovieDetailResponse
-import com.chanbo.sampleapp.utils.SchedulerProvider
-import io.reactivex.Observable
+import retrofit2.Response
 import javax.inject.Inject
 
 class MovieRepository @Inject constructor(
-    private val api: MovieApi,
-    private val provider: SchedulerProvider
-) : Repository {
+    private val api: MovieApi
+) : BaseRepository(), Repository {
 
-    override fun getMovieDetail(apiKey: String, movieId: Int): Observable<MovieDetailResponse> =
-        api.getMovieDetail(movieId, apiKey)
-            .compose(provider.ioToMainObservableScheduler())
+    override suspend fun getMovieDetail(apiKey: String, movieId: Int): Result<MovieDetailResponse> =
+        apiCallback {
+            api.getMovieDetailAsync(movieId, apiKey).await()
+        }
 
-    override fun getTopRatedMovies(apiKey: String, page: Int): Observable<MovieResponse> =
-         api.getTopRatedMovies(apiKey, page)
-             .compose(provider.ioToMainObservableScheduler())
+
+    override suspend fun getTopRatedMovies(apiKey: String, page: Int): Result<MovieResponse> =
+         apiCallback {
+             api.getTopRatedMoviesAsync(apiKey, page).await()
+         }
 }

@@ -12,22 +12,22 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.viewmodel.ext.android.viewModel
 import javax.inject.Inject
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), HasSupportFragmentInjector {
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
-
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingAndroidInjector
+//    @Inject
+//    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+//
+//    override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingAndroidInjector
 
     override fun getLayoutId(): Int = R.layout.activity_main
 
     override val bindingVariable: Int
         get() = BR.viewModel
 
-    override val viewModel: MainViewModel
-        get() = injectViewModel(MainViewModel::class.java)
+    override val viewModel: MainViewModel by viewModel()
 
     override fun onInitView(savedInstanceState: Bundle?) {
 

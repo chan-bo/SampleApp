@@ -12,9 +12,6 @@ import javax.inject.Inject
 
 abstract class BaseActivity<VB: ViewDataBinding, VM: BaseViewModel> : AppCompatActivity() {
 
-    @Inject
-    lateinit var mViewModelFactory: ViewModelProvider.Factory
-
     protected lateinit var mBinding: VB
 
     @LayoutRes
@@ -37,6 +34,4 @@ abstract class BaseActivity<VB: ViewDataBinding, VM: BaseViewModel> : AppCompatA
 
     abstract fun subscriptLiveData()
 
-    fun<T : ViewModel> injectViewModel(modelClass: Class<T>) =
-        ViewModelProviders.of(this, mViewModelFactory)[modelClass]
 }

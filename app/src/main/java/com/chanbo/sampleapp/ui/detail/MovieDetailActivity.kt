@@ -15,6 +15,7 @@ import com.chanbo.sampleapp.utils.IMAGE_URL_BACKDROP_SIZE
 import com.chanbo.sampleapp.utils.clipToStatusBar
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_movie_detail.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding, MovieDetailViewModel>() {
 
@@ -26,8 +27,7 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding, MovieDetail
     override val bindingVariable: Int
         get() = BR.viewModel
 
-    override val viewModel: MovieDetailViewModel
-        get() = injectViewModel(MovieDetailViewModel::class.java)
+    override val viewModel: MovieDetailViewModel by viewModel()
 
     override fun onInitView(savedInstanceState: Bundle?) {
 

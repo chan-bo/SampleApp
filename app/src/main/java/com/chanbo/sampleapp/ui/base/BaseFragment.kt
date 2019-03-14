@@ -8,16 +8,8 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import com.chanbo.sampleapp.di.Injectable
-import javax.inject.Inject
 
-abstract class BaseFragment<VB: ViewDataBinding, VM: BaseViewModel> : Fragment(), Injectable {
-
-    @Inject
-    lateinit var mViewModelFactory: ViewModelProvider.Factory
+abstract class BaseFragment<VB: ViewDataBinding, VM: BaseViewModel> : Fragment() {
 
     private lateinit var mBinding: VB
 
@@ -46,6 +38,4 @@ abstract class BaseFragment<VB: ViewDataBinding, VM: BaseViewModel> : Fragment()
 
     abstract fun subscriptLiveData()
 
-    fun<T : ViewModel> injectViewModel(modelClass: Class<T>) =
-        ViewModelProviders.of(this, mViewModelFactory)[modelClass]
 }

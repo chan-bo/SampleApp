@@ -2,43 +2,39 @@ package com.chanbo.sampleapp.di
 
 import com.chanbo.sampleapp.api.MovieApi
 import com.google.gson.GsonBuilder
-import dagger.Module
-import dagger.Provides
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.dsl.module.module
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 
-@Module
-class NetworkModule {
+val networkModule = module {
 
-    @Provides
-    @Singleton
-    internal fun provideMovieApi(client: OkHttpClient): MovieApi =
-            Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org/3/")
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
-                .create(MovieApi::class.java)
+    single<Interceptor> {
+        HttpLoggingInterceptor {
+            Timber.d(it)
+        }.setLevel(HttpLoggingInterceptor.Level.BODY)
+    }
 
-    @Provides
-    @Singleton
-    internal fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient =
-            OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .build()
+    single {
+        OkHttpClient.Builder()
+            .addInterceptor(get())
+            .connectTimeout(10, TimeUnit.SECONDS)
+            .build()
 
-    @Provides
-    @Singleton
-    internal fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
-            HttpLoggingInterceptor {
-                Timber.i(it)
-            }.setLevel(HttpLoggingInterceptor.Level.BODY)
+    }
+
+    single {
+        Retrofit.Builder()
+            .baseUrl("https://api.themoviedb.org/3/")
+            .client(get())
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+            .addCallAdapterFactory(CoroutineCallAdapterFactory.invoke())
+            .build()
+            .create(MovieApi::class.java)
+    }
 }

@@ -19,6 +19,7 @@ import com.chanbo.sampleapp.utils.EspressoIdlingResource
 import com.chanbo.sampleapp.utils.callback.MovieItemClickListener
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_top_rated.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class TopRatedFragment : BaseFragment<FragmentTopRatedBinding, TopRatedViewModel>() {
@@ -30,8 +31,7 @@ class TopRatedFragment : BaseFragment<FragmentTopRatedBinding, TopRatedViewModel
     override val bindingVariable: Int
         get() = BR.viewModel
 
-    override val viewModel: TopRatedViewModel
-        get() = injectViewModel(TopRatedViewModel::class.java)
+    override val viewModel: TopRatedViewModel by viewModel()
 
     override fun onInitView(view: View, savedInstanceState: Bundle?) {
         _adapter = TopRatedAdapter()

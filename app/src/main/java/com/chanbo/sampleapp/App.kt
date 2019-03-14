@@ -1,24 +1,22 @@
 package com.chanbo.sampleapp
 
-import android.app.Activity
 import android.app.Application
-import com.chanbo.sampleapp.di.Injector
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
+import com.chanbo.sampleapp.di.appModule
+import com.chanbo.sampleapp.di.networkModule
+import com.chanbo.sampleapp.di.viewModelModule
+import org.koin.android.ext.android.startKoin
 import timber.log.Timber
-import javax.inject.Inject
 
-class App : Application(), HasActivityInjector {
-
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
-
-    override fun activityInjector(): AndroidInjector<Activity> = dispatchingAndroidInjector
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Injector.init(this)
+
+        startKoin(this, listOf(
+            networkModule,
+            appModule,
+            viewModelModule
+        ))
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())

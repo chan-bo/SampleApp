@@ -5,11 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.chanbo.sampleapp.api.Repository
+import com.chanbo.sampleapp.api.callback.Result
 import com.chanbo.sampleapp.data.ResultsItem
 import com.chanbo.sampleapp.data.detail.MovieDetailResponse
 import com.chanbo.sampleapp.ui.base.BaseViewModel
-import com.chanbo.sampleapp.utils.Subscriber
-import timber.log.Timber
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class TopRatedViewModel @Inject constructor(
@@ -20,7 +20,7 @@ class TopRatedViewModel @Inject constructor(
     val movieDetailLiveData = MutableLiveData<MovieDetailResponse>()
 
     init {
-        val factory = TopRatedDataSourceFactory(repository)
+        val factory = TopRatedDataSourceFactory(repository, uiScope)
 
         val config = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
@@ -34,14 +34,14 @@ class TopRatedViewModel @Inject constructor(
 
     fun getMovieDetail(movieId: Int) {
         isLoading.postValue(true)
-        repository.getMovieDetail(movieId = movieId)
-            .doOnNext {
-                movieDetailLiveData.postValue(it)
-            }.doOnError {
-                Timber.e("error $it")
-            }.doOnComplete {
-                isLoading.postValue(false)
+        uiScope.launch {
+            val response = repository.getMovieDetail(movieId = movieId)
+            isLoading.postValue(false)
+            when (response) {
+                is Result.Success -> {
+                    movieDetailLiveData.postValue(response.data)
+                }
             }
-            .subscribe(Subscriber.create())
+        }
     }
 }

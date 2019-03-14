@@ -63,12 +63,15 @@ dependencies {
     def retrofitVersion = '2.4.0'
     def okHttpVersion = '3.11.0'
     def dagger2Version = '2.21'
+    def koinVersion = '1.0.2'
     def glideVersion = '4.8.0'
+    def coroutineVersion = '1.1.1'
     def rxKotlinVersion = '2.3.0'
     def rxAndroidVersion = '2.1.0'
     def timberVersion = '4.7.1'
     def archLifecycleVersion = '1.1.1'
     def materialVersion = '1.0.0'
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
@@ -77,7 +80,7 @@ dependencies {
     implementation "com.google.android.material:material:$materialVersion"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.2-alpha01'
+    androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.1'
     implementation 'androidx.test.espresso:espresso-idling-resource:3.1.1'
@@ -88,13 +91,10 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
 
     // Dependency Injection
-    implementation "com.google.dagger:dagger:$dagger2Version"
-    implementation "com.google.dagger:dagger-android-support:$dagger2Version"
-    kapt "com.google.dagger:dagger-compiler:$dagger2Version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger2Version"
+    implementation "org.koin:koin-android:$koinVersion"
+    implementation "org.koin:koin-android-viewmodel:$koinVersion"
 
     // Glide
     implementation "com.github.bumptech.glide:glide:$glideVersion"
@@ -107,12 +107,18 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$archLifecycleVersion"
     kapt "android.arch.lifecycle:compiler:$archLifecycleVersion"
 
-    // Reactive
-    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    // Coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+
+
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
     implementation 'android.arch.paging:runtime:1.0.1'
+
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+
     androidTestImplementation 'tools.fastlane:screengrab:1.2.0'
 
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.9@aar') {
