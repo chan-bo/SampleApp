@@ -29,13 +29,13 @@ private fun getStatusBarHeight(context: Context): Int {
     return result
 }
 
-fun<T> AppCompatActivity.observeLiveData(liveData: LiveData<T>, function: (liveData: T?) -> Unit) {
+fun <T> AppCompatActivity.observeLiveData(liveData: LiveData<T>, function: (liveData: T?) -> Unit) {
     liveData.observe(this@observeLiveData, Observer {
         function(it)
     })
 }
 
-fun<T> Fragment.observeLiveData(liveData: LiveData<T>, function: (liveData: T?) -> Unit) {
+fun <T> Fragment.observeLiveData(liveData: LiveData<T>, function: (liveData: T?) -> Unit) {
     liveData.observe(this@observeLiveData, Observer {
         function(it)
     })

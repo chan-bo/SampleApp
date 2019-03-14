@@ -2,7 +2,6 @@ package com.chanbo.sampleapp.api
 
 import com.chanbo.sampleapp.data.MovieResponse
 import com.chanbo.sampleapp.data.detail.MovieDetailResponse
-import io.reactivex.Observable
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
@@ -22,5 +21,5 @@ interface MovieApi {
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String,
         @Query("append_to_response") appendToResponse: String = "images,credits"
-    ) : Deferred<Response<MovieDetailResponse>>
+    ): Deferred<Response<MovieDetailResponse>>
 }

@@ -16,7 +16,7 @@ class TopRatedDataSource(
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, ResultsItem>) {
         uiScope.launch {
             val response = repository.getTopRatedMovies()
-            when(response) {
+            when (response) {
                 is Result.Success -> {
                     callback.onResult(response.data.results!!, null, 2)
                 }
@@ -30,7 +30,7 @@ class TopRatedDataSource(
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, ResultsItem>) {
         uiScope.launch {
             val response = repository.getTopRatedMovies()
-            when(response) {
+            when (response) {
                 is Result.Success -> {
                     callback.onResult(response.data.results!!, params.key + 1)
                 }

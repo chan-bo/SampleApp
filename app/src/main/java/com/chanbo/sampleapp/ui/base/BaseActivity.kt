@@ -5,12 +5,8 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import javax.inject.Inject
 
-abstract class BaseActivity<VB: ViewDataBinding, VM: BaseViewModel> : AppCompatActivity() {
+abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity() {
 
     protected lateinit var mBinding: VB
 
@@ -33,5 +29,4 @@ abstract class BaseActivity<VB: ViewDataBinding, VM: BaseViewModel> : AppCompatA
     abstract fun onInitView(savedInstanceState: Bundle?)
 
     abstract fun subscriptLiveData()
-
 }

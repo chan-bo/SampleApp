@@ -1,19 +1,14 @@
 package com.chanbo.sampleapp.ui.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import com.chanbo.sampleapp.BR
 import com.chanbo.sampleapp.R
 import com.chanbo.sampleapp.databinding.ActivityMainBinding
 import com.chanbo.sampleapp.ui.base.BaseActivity
 import com.chanbo.sampleapp.ui.toprated.TopRatedFragment
 import com.chanbo.sampleapp.utils.clipToStatusBar
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
@@ -43,7 +38,5 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     override fun subscriptLiveData() {
-
     }
-
 }

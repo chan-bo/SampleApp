@@ -16,7 +16,7 @@ class TopRatedAdapter : PagedListAdapter<ResultsItem, TopRatedAdapter.TopRatedVi
     DIFF_CALLBACK
 ) {
 
-    private var _movieItemClickListener : MovieItemClickListener? = null
+    private var _movieItemClickListener: MovieItemClickListener? = null
 
     fun setMovieItemClickListener(movieItemClickListener: MovieItemClickListener) {
         _movieItemClickListener = movieItemClickListener
@@ -63,5 +63,4 @@ class TopRatedAdapter : PagedListAdapter<ResultsItem, TopRatedAdapter.TopRatedVi
             }
         }
     }
-
 }

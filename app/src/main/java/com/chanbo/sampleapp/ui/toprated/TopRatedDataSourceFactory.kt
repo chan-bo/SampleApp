@@ -18,5 +18,4 @@ class TopRatedDataSourceFactory(
         liveData.postValue(source)
         return source
     }
-
 }

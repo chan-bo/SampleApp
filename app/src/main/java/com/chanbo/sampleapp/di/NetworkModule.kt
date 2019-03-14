@@ -1,5 +1,6 @@
 package com.chanbo.sampleapp.di
 
+import com.chanbo.sampleapp.BuildConfig
 import com.chanbo.sampleapp.api.MovieApi
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -25,12 +26,11 @@ val networkModule = module {
             .addInterceptor(get())
             .connectTimeout(10, TimeUnit.SECONDS)
             .build()
-
     }
 
     single {
         Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
+            .baseUrl(BuildConfig.BASE_URL)
             .client(get())
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .addCallAdapterFactory(CoroutineCallAdapterFactory.invoke())

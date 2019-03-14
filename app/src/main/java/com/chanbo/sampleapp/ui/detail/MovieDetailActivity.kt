@@ -1,7 +1,6 @@
 package com.chanbo.sampleapp.ui.detail
 
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -9,10 +8,7 @@ import com.chanbo.sampleapp.BR
 import com.chanbo.sampleapp.R
 import com.chanbo.sampleapp.data.detail.MovieDetailResponse
 import com.chanbo.sampleapp.databinding.ActivityMovieDetailBinding
-import com.chanbo.sampleapp.di.GlideApp
 import com.chanbo.sampleapp.ui.base.BaseActivity
-import com.chanbo.sampleapp.utils.IMAGE_URL_BACKDROP_SIZE
-import com.chanbo.sampleapp.utils.clipToStatusBar
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -39,14 +35,9 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding, MovieDetail
 
         _castAdapter.addCasts(movieDetail.credits?.cast?.toMutableList())
         _photoAdapter.addPhotos(movieDetail.images?.posters?.toMutableList())
-
-       /* GlideApp.with(imgBackdrop.context)
-            .load("$IMAGE_URL_BACKDROP_SIZE${movieDetail.backdropPath}")
-            .into(imgBackdrop)*/
     }
 
     override fun subscriptLiveData() {
-
     }
 
     private fun setUpRecyclerView() {
@@ -57,7 +48,7 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding, MovieDetail
         castRecyclerView.adapter = _castAdapter
         castRecyclerView.isNestedScrollingEnabled = false
 
-        photoRecyclerView.layoutManager = GridLayoutManager(this, 2, RecyclerView.VERTICAL , false)
+        photoRecyclerView.layoutManager = GridLayoutManager(this, 2, RecyclerView.VERTICAL, false)
         photoRecyclerView.adapter = _photoAdapter
         photoRecyclerView.isNestedScrollingEnabled = false
     }

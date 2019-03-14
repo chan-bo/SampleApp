@@ -32,7 +32,13 @@ android {
         }
     }
     buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "API_KEY", "\"bcc94b1a7fe4d2ac8a21513d1f62fbb7\"")
+        }
         release {
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "API_KEY", "\"bcc94b1a7fe4d2ac8a21513d1f62fbb7\"")
             signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -62,12 +68,9 @@ android {
 dependencies {
     def retrofitVersion = '2.4.0'
     def okHttpVersion = '3.11.0'
-    def dagger2Version = '2.21'
     def koinVersion = '1.0.2'
     def glideVersion = '4.8.0'
     def coroutineVersion = '1.1.1'
-    def rxKotlinVersion = '2.3.0'
-    def rxAndroidVersion = '2.1.0'
     def timberVersion = '4.7.1'
     def archLifecycleVersion = '1.1.1'
     def materialVersion = '1.0.0'
@@ -111,7 +114,6 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
     implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
-
 
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 

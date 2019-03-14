@@ -10,9 +10,8 @@ import com.chanbo.sampleapp.data.ResultsItem
 import com.chanbo.sampleapp.data.detail.MovieDetailResponse
 import com.chanbo.sampleapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class TopRatedViewModel @Inject constructor(
+class TopRatedViewModel(
     private val repository: Repository
 ) : BaseViewModel() {
 
