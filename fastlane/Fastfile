@@ -36,6 +36,7 @@ platform :android do
     @android_test_apk = Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
 
     run_tests_firebase_testlab(
+        #gcloud_service_key_file: "firebase-test-lab-key.json",
         project_id: "sampleappcicd",
         app_apk: @app_apk,
         android_test_apk: @android_test_apk,

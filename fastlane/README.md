@@ -21,11 +21,6 @@ or alternatively using `brew cask install fastlane`
 fastlane android assemble_build
 ```
 Assemble Build
-### android assemble_test_application
-```
-fastlane android assemble_test_application
-```
-Assemble Test Application
 ### android unit_tests
 ```
 fastlane android unit_tests
@@ -51,11 +46,6 @@ Beta Deployment
 fastlane android release
 ```
 Release Deployment
-### android capture_screen
-```
-fastlane android capture_screen
-```
-Capture Screen
 
 ----
 

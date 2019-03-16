@@ -5,22 +5,32 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.003094">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.001075">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: Switch to android assemble_build lane" time="0.001106">
+      <testcase classname="fastlane.lanes" name="1: Switch to android assemble_build lane" time="0.000829">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: gradle" time="19.753926">
+      <testcase classname="fastlane.lanes" name="2: gradle" time="20.317684">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: curl https://slack.com/api/files.upload -F token=&quot;xoxp-474526796610-473921783169-569292002371-90110c5e994a82f40efdae07038996a1&quot;         -F channels=&quot;CDYAFET1A&quot; -F title=&quot;Dev Debug&quot; -F file=@/Users/mac/Bo/AndroidStudioProjects/SampleApp/app/build/outputs/apk/dev/debug/app-dev-debug.apk" time="6.351308">
+      <testcase classname="fastlane.lanes" name="3: Switch to android assemble_build lane" time="0.002081">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: gradle" time="10.776744">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: run_tests_firebase_testlab" time="243.991213">
         
       </testcase>
     

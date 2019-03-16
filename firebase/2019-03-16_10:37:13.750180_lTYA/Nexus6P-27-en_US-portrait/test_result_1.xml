@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="" tests="2" failures="0" errors="0" skipped="0" time="10.413" timestamp="2019-03-16T03:39:56" hostname="localhost">
+  <properties />
+  <testcase name="useAppContext" classname="com.chanbo.sampleapp.ExampleInstrumentedTest" time="0.001" />
+  <testcase name="testRecyclerView" classname="com.chanbo.sampleapp.MainActivityTest" time="9.639" />
+</testsuite>
