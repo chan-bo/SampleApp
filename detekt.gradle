@@ -1,7 +1,7 @@
 apply plugin: 'io.gitlab.arturbosch.detekt'
 
 detekt {
-//    config = files("$rootDir/default-detekt-config.yml")
+    config = files("$rootDir/app/default-detekt-config.yml")
     filters = ".*build.*,.*/resources/.*,.*/tmp/.*"
 }
 
