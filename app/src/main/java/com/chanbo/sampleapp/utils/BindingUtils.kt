@@ -3,6 +3,7 @@ package com.chanbo.sampleapp.utils
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.chanbo.sampleapp.di.GlideApp
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -16,7 +17,7 @@ object BindingUtils {
         }
         GlideApp.with(imageView.context)
             .load("$IMAGE_URL_POSTER_SIZE$url")
-            .transforms(RoundedCorners(10))
+            .apply(RequestOptions().transform(RoundedCorners(10)))
             .into(imageView)
     }
 
