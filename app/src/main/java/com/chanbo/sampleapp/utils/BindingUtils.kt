@@ -19,7 +19,6 @@ object BindingUtils {
             .load("$IMAGE_URL_POSTER_SIZE$url")
             .apply(RequestOptions().transform(RoundedCorners(10)))
             .into(imageView)
-
     }
 
     @BindingAdapter("profile_url")
